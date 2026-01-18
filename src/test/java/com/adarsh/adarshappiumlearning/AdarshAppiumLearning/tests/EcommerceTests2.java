@@ -13,7 +13,7 @@ import com.adarsh.adarshappiumlearning.AdarshAppiumLearning.pages.common.PLPPage
 
 public class EcommerceTests2 extends BaseTest {
 
-    private static final String PRODUCT_NAME = "Sauce Labs Onesie";
+    private static final String PRODUCT_NAME ="Sauce Labs Onesie";
 
     @BeforeMethod(alwaysRun = true)
     public void login() {
