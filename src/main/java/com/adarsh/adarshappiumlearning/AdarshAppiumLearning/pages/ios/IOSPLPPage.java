@@ -17,17 +17,15 @@ public class IOSPLPPage extends BasePage implements PLPPage {
 	}
 
 	@Override
+	public boolean isAProductTitleDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public void addProductToCart(String productName) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	
-
-	@Override
-	public boolean areProductTitlesDisplayed() {
-		// TODO Auto-generated method stub
-		return null != null;
 	}
 
 	@Override
@@ -36,4 +34,5 @@ public class IOSPLPPage extends BasePage implements PLPPage {
 		
 	}
 
+	
 }

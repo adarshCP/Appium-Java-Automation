@@ -24,7 +24,7 @@ public abstract class BasePage {
         wait.click(locator);
     }
     
-    public double getformattedProductPrice(String productPrice) {
+    protected double getformattedProductPrice(String productPrice) {
 		String splittedString = productPrice.substring(1);
 		Double price=Double.parseDouble(splittedString);
 		return price;
