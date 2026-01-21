@@ -22,65 +22,77 @@ public class AndroidPLPPage extends BasePage implements PLPPage{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public By productCard =By.xpath("(//android.view.ViewGroup[@content-desc=\"test-Item\"])");
+	// Product card container
+	private By productCard =By.xpath("//android.view.ViewGroup[@content-desc=\"test-Item\"]");
 	
+	// Product title inside a card (relative locator)
 	public By productTitleElement =By.xpath(".//android.widget.TextView[@content-desc=\"test-Item title\"]");
 	
+
+    // Add / Remove button inside a card (relative locator)
 	public By productAddToCartButton=By.xpath(".//android.view.ViewGroup[@content-desc='test-ADD TO CART' or @content-desc='test-REMOVE']");
+	
+	
+	   /* =======================
+    Helper methods
+    ======================= */
+	
 	public List<WebElement> getProductCards() {
 		return driver.findElements(productCard);
 		
 	}
 	
 	public List<WebElement> getProductNames() {
-		return driver.findElements(productTitleElement);
+		return  getProductCards().stream()
+	            .map(card -> card.findElement(productTitleElement))
+	            .toList();
+		
+	}
+	
+	private WebElement getProductCardByName(String productName) {
+		AndroidUtils.scrollUsingAndroidUIAutomator(productName,driver);
+		
+		for (WebElement card:getProductCards() ) {
+			String name=card.findElement(productTitleElement).getText();
+			if (name.equalsIgnoreCase(productName)) {
+				return card;
+			}
+			
+		}
+		return null;
 		
 	}
 	
 	
-	
+	/* =======================
+    PLPPage Implementations
+    ======================= */
 	
 	@Override
 	public void addProductToCart(String productName) {
-		AndroidUtils.scrollUsingAndroidUIAutomator(productName,driver);	
-		for(int i=0; i<getProductCards().size();i++) {
-			WebElement productCard=getProductCards().get(i);
-			String productName1=productCard.findElement(productTitleElement).getText();
-			
-			if (productName1.equalsIgnoreCase(productName)) {
-				productCard.findElement(productAddToCartButton).click();
-			}
+		WebElement productCard =getProductCardByName(productName);
+		wait.waitUtilAnElementIsClickable(productCard);
+		if (productCard == null) {
+            throw new RuntimeException("Product not found on PLP: " + productName);
+        }
+		productCard.findElement(productAddToCartButton).click();
+		
 			
 		}
 		
 		
-	}
-
-
-	
-	
-	
-	
 	
 	@Override
 	public  boolean isAProductTitleDisplayed() {
 		
-		wait.waitUntilanElementIsVisibile(productTitleElement);
-		
-		List<WebElement> productNames = getProductNames();
-		
+		 wait.waitUntilanElementIsVisibile(productTitleElement);
 
-	    if (productNames.isEmpty()) 
-	    {
-	        return false;
-	    } 
-		
-	    for (WebElement product : productNames) {
-	        if (product.isDisplayed()) {
-	            return true;
-	        }
-	    }
-		return false;
+		    for (WebElement title : getProductNames()) {
+		        if (title.isDisplayed()) {
+		            return true;
+		        }
+		    }
+		    return false;
 	    
 		
 	
@@ -88,22 +100,14 @@ public class AndroidPLPPage extends BasePage implements PLPPage{
 	}
 
 	@Override
-	public void navigateToPDPOfAProduct(String productName1) {
+	public void navigateToPDPOfAProduct(String productName) {
+		WebElement productCard =getProductCardByName(productName);
 		
-		AndroidUtils.scrollUsingAndroidUIAutomator(productName1,driver);
-		wait.waitUntilanElementIsVisibile(productCard);
+		if (productCard == null) {
+            throw new RuntimeException("Product not found on PLP: " + productName);
+        }
+		productCard.click();
 		
-		List <WebElement> productCards =getProductCards();
-		
-		for(int i=0; i<productCards.size();i++) {
-			WebElement productCard=getProductCards().get(i);
-			String productName2=productCard.findElement(productTitleElement).getText();
-			
-			if (productName2.equalsIgnoreCase(productName1)) {
-				productCard.click();
-				return;
-			}
-			
 		}
 		
 		// TODO Auto-generated method stub
@@ -114,4 +118,4 @@ public class AndroidPLPPage extends BasePage implements PLPPage{
 
 	
 
-}
+
