@@ -22,6 +22,10 @@ public class WaitUtils {
 	 public void waitUntilanElementIsVisibile(By locator) {
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	 }
+	 
+	 public void waitUtilAnElementIsClickable(WebElement productCard) {
+		 wait.until(ExpectedConditions.elementToBeClickable(productCard));
+	 }
 	 public void click(By locator) {
 	        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 	    }

@@ -1,6 +1,7 @@
 package com.adarsh.adarshappiumlearning.AdarshAppiumLearning.pages.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.adarsh.adarshappiumlearning.AdarshAppiumLearning.utils.AndroidUtils;
 import com.adarsh.adarshappiumlearning.AdarshAppiumLearning.utils.WaitUtils;
@@ -23,6 +24,8 @@ public abstract class BasePage {
     protected void tap(By locator) {
         wait.click(locator);
     }
+    
+    
     
     protected double getformattedProductPrice(String productPrice) {
 		String splittedString = productPrice.substring(1);
