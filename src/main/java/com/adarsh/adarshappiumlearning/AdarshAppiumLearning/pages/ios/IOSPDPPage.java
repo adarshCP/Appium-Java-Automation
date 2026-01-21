@@ -13,9 +13,29 @@ public class IOSPDPPage extends BasePage implements PDPPage {
 	}
 
 	@Override
-	public void addToCartfromPDP(String productName) {
+	public boolean isProductTitleDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void addToCartfromPDP() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void navigateToCartPage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getPDPProductPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }

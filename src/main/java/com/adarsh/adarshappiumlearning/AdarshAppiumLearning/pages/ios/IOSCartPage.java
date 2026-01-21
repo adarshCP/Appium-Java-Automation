@@ -23,15 +23,21 @@ public class IOSCartPage extends BasePage implements CartPage {
 	}
 
 	@Override
-	public void removeItemFromCart(String name) {
+	public void removeItemFromCart() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getPriceOFAnItem(String name) {
+	public String getProductTitle(String name) {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+
+	@Override
+	public double getCartPriceOfAnItem() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
