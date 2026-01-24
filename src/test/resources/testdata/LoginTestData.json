@@ -1,0 +1,10 @@
+{
+  "ecommerceTests": [
+    {
+      "userName": "standard_user",
+      "password": "secret_sauce",
+      "productName": "Sauce Labs Bolt T-Shirt"
+	  
+    } 
+   ]
+} 
