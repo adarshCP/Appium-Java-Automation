@@ -4,7 +4,9 @@
 
   <test thread-count="5" name="Test">
     <classes>
-      <class name="com.adarsh.adarshappiumlearning.AdarshAppiumLearning.tests.EcommerceTestsWithDataProvider"/>
+      <class name="com.adarsh.adarshappiumlearning.AdarshAppiumLearning.tests.EcommerceTestsWithDataProvider">
+      
+      </class>
       
     </classes>
   </test> <!-- Test -->
